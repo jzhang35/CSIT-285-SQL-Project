@@ -1,0 +1,29 @@
+/*what letters are coordinated with the dept names 
+**/
+select *
+from dept as D
+join location as L
+on l.deptID = d.deptID;
+
+/*check the locations of items on a database
+**/
+select *
+from location as L
+join item as I
+on i.locationID = l.locationID
+
+/*user wants to see if the items that they are looking for are in stock
+**/
+select *
+from item as I
+join stock as S
+on s.stockID = I.stockID;
+
+/* users want to see what items are in what store
+**/
+select i.locationID, letter, aisle, section, number, city, state, itemID, itemNumber, item_name, cost
+from( location as l
+join store as s
+on l.storeID = s.storeID) 
+join item as i
+on l.locationID = i.locationID;
