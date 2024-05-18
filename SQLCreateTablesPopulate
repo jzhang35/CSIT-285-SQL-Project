@@ -1,0 +1,84 @@
+create table dept (
+deptID int primary key,
+deptNumber int,
+dept_name varchar(50));
+
+create table [location](
+locationID int primary key,
+letter varchar(1),
+aisle int,
+section int,
+number int,
+deptID int,
+storeID int);
+
+
+create table item(
+itemID int primary key,
+itemNumber int,
+item_name varchar(50),
+cost int,
+stockID int,
+locationID int);
+
+create table stock(
+stockID int primary key,
+number_backroom int,
+number_salesfloor int);
+
+create table store(
+storeID int primary key,
+city varchar(50),
+[state] varchar(2));
+
+alter table [location]
+add foreign key(deptID) references dept(deptID);
+
+alter table [location]
+add foreign key(storeID) references store(storeID);
+
+alter table item
+add foreign key(stockID) references stock(stockID);
+
+alter table item 
+add foreign key(locationID) references location(locationID);
+
+insert into dept
+values
+('235','9','Sporting Goods'),
+('236','14','Cook and dine'),
+('237','19','Piece Goods and crafts'),
+('238','40','Pharamcy'),
+('239','46','Cosmetics and Skincare');
+
+insert into store
+values
+('356','Manville','NJ'),
+('357','Piscataway','NJ'),
+('358','Levittown','PA'),
+('359','Milford','PA'),
+('360','Bayonne','NY');
+
+insert into stock
+values
+('678','15','44'),
+('679','324','10'),
+('670','2','50'),
+('671','7','34'),
+('672','15','70');
+
+insert into item
+values
+('132','245786','soap','5','678','567'),
+('133','234516','basketball','10','671','570'),
+('134','234268','artificial plant','4','672','569'),
+('135','798745','tennisball','5','679','571'),
+('136','754683','brace','15','670','568');
+
+insert into [location]
+values
+('567','G','8','6','34','238','356'),
+('568','G','8','6','35','238','356'),
+('569','J','24','5','22','237','356'),
+('570','L','31','1','6','235','359'),
+('571','L','31','1','3','235','360');
